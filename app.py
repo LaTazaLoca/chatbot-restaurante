@@ -1,20 +1,49 @@
+"""
+API del Chatbot - La Taza Loca
+Con Red Neuronal para Clasificación de Intenciones
+"""
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import re
-from difflib import SequenceMatcher
 import os
+import random
+from difflib import SequenceMatcher
+
+# Importar el clasificador de intenciones
+from modelo_intenciones import ClasificadorIntenciones
 
 app = Flask(__name__)
-CORS(app)  # Permite peticiones desde cualquier origen
+CORS(app)
 
 class ChatbotRestaurante:
-    def __init__(self, archivo_conocimiento='conocimiento_bot.json', archivo_menu='menu.json'):
-        self.archivo_conocimiento = archivo_conocimiento
+    def __init__(self, archivo_menu='menu.json'):
         self.archivo_menu = archivo_menu
-        self.conocimiento = self.cargar_conocimiento()
         self.menu = self.cargar_menu()
         
+        # Cargar el modelo de red neuronal
+        self.clasificador = None
+        self.usar_neural = False
+        self.cargar_modelo_neural()
+        
+    def cargar_modelo_neural(self):
+        """Intenta cargar el modelo de red neuronal"""
+        try:
+            ruta_modelo = 'modelo_chatbot'
+            if os.path.exists(ruta_modelo):
+                self.clasificador = ClasificadorIntenciones()
+                self.clasificador.cargar_modelo(ruta_modelo)
+                self.usar_neural = True
+                print("✅ Modelo de red neuronal cargado correctamente")
+            else:
+                print("⚠️ Modelo no encontrado. Ejecuta 'python entrenar_modelo.py' primero.")
+                print("   Usando modo de respaldo con patrones.")
+        except Exception as e:
+            print(f"⚠️ Error cargando modelo neural: {e}")
+            print("   Usando modo de respaldo con patrones.")
+            self.usar_neural = False
+    
     def cargar_menu(self):
         """Carga el menú desde el archivo JSON"""
         if os.path.exists(self.archivo_menu):
@@ -22,192 +51,15 @@ class ChatbotRestaurante:
                 return json.load(f)
         return []
     
-    def cargar_conocimiento(self):
-        """Carga el conocimiento desde un archivo JSON"""
-        if os.path.exists(self.archivo_conocimiento):
-            with open(self.archivo_conocimiento, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        else:                                                                                                                            
-            conocimiento_inicial = {
-"meta": {
-    "patrones": [
-        "la taza loca", "taza loca", "tu nombre", "como se llaman", "cómo se llaman",
-        "info", "informacion", "información", "datos", "contacto", "contactar",
-        "whatsapp", "wsp", "wasap", "telefono", "teléfono", "numero", "número",
-        "horario", "abren", "cierran", "a que hora", "a qué hora",
-        "entrega", "domicilio", "delivery", "envio", "envío",
-        "ubicacion", "ubicación", "direccion", "dirección", "donde estan", "dónde están"
-    ],
-    "respuestas": [
-        "☕🌮 **La Taza Loca**\n📲 WhatsApp: **664-563-16-75**\n🕒 Horario: **9:00 am a 4:00 pm**\n🚚 Entrega a domicilio **GRATIS** en lugares cercanos (sujeto a zona).\n📍 Tijuana, Baja California.\n\n¿Quieres ver el **menú** o hacer un **pedido**? 😄",
-        "¡Claro! 😄\n📲 WhatsApp: **664-563-16-75**\n🕒 **9:00 am a 4:00 pm**\n🚚 Entrega **GRATIS** en cercanos (sujeto a zona)\n📍 Tijuana\n\nDime si buscas **menú**, **precios** o **recomendación** 🌮🔥"
-    ],
-
-    "nombre_negocio": "La Taza Loca",
-    "whatsapp": "664-563-16-75",
-    "whatsapp_link": "https://wa.me/526645631675",
-    "horario": "De 9:00 am a 4:00 pm",
-    "zona": "Tijuana, Baja California",
-    "entrega_texto": "🚚 Entrega a domicilio GRATIS en lugares cercanos (sujeto a zona).",
-    "nota": "Si necesitas dirección exacta, pide la ubicación al personal o comparte tu colonia para confirmar entrega."
-},
-
-    "saludos": {
-        "patrones": ["hola", "buenos dias", "buen día", "buenas tardes", "buenas noches", "hey", "que tal", "qué tal", "holi", "buenas"],
-        "respuestas": [
-            "¡Hola! 👋 Bienvenido a **La Taza Loca** ☕🌮 ¿Qué se te antoja hoy: **desayuno**, **antojitos** o **comida**?",
-            "¡Qué onda! 😄 Soy el asistente de **La Taza Loca**. ¿Quieres que te pase el **menú** o te recomiendo algo 🔥?"
-        ]
-    },
-
-    "despedidas": {
-        "patrones": ["adios", "adiós", "hasta luego", "chao", "nos vemos", "bye", "gracias", "sale", "va", "ok gracias", "muchas gracias"],
-        "respuestas": [
-            "¡Con gusto! 😄🌮 Cuando gustes te atendemos. ¡Bonito día!",
-            "¡Gracias por tu preferencia! ☕✨ Si quieres ordenar, mándanos WhatsApp: **664-563-16-75** 📲"
-        ]
-    },
-
-    "menu_completo": {
-        "patrones": ["menu", "menú", "que venden", "platillos", "comida", "opciones", "que hay", "qué hay", "lista"],
-        "respuestas": [
-            "Aquí va el **menú de La Taza Loca** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes con Huevo\n• Chilaquiles Rojos con Huevo\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos de Queso\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 Ordena por WhatsApp: **664-563-16-75**\n🕒 Horario: **9:00 am a 4:00 pm**\n🚚 Entrega GRATIS en lugares cercanos (sujeto a zona).",
-            "¿Qué te interesa ver primero? 😄\n1) **Desayunos** 🍳\n2) **Antojitos** 🌮\n3) **Comidas** 🍛\nDime el número y te lo paso."
-        ]
-    },
-
-    "menu_desayunos": {
-        "patrones": ["desayunos", "huevos", "omelette", "omelet", "desayuno"],
-        "respuestas": [
-            "**DESAYUNOS 🍳**\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n¿Te antoja algo en especial? 😋",
-            "En desayunos tenemos huevos de varios estilos y omelette 🧀 ¿Quieres algo más picosito 🌶️ o más tranqui?"
-        ]
-    },
-
-    "menu_antojitos": {
-        "patrones": ["antojitos", "chilaquiles", "enmoladas", "enchiladas", "flautas", "chiles rellenos", "chile relleno"],
-        "respuestas": [
-            "**ANTOJITOS 🌮🔥**\n• Flautas de Pollo\n• Chilaquiles Verdes con Huevo\n• Chilaquiles Rojos con Huevo\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos de Queso\n\n¿Los quieres **rojos o verdes**? 😄",
-            "Ufff antojitos tenemos de los buenos 😋 ¿Te recomiendo **chilaquiles rojos** o **enmoladas**?"
-        ]
-    },
-
-    "menu_comidas": {
-        "patrones": ["comidas", "mole", "chipotle", "puerco", "salsa verde", "comida corrida", "platillo fuerte"],
-        "respuestas": [
-            "**COMIDAS 🍛**\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n¿Te late más algo cremosito (chipotle) o algo tradicional (mole)? 🔥",
-            "Para comida te recomiendo el **mole de pollo** si quieres algo tradicional 😋 o la **pechuga en chipotle** si quieres cremita 🌶️"
-        ]
-    },
-
-    "precios": {
-        "patrones": ["precio", "costo", "cuanto cuesta", "cuánto cuesta", "cuanto vale", "cuánto vale", "precios", "en cuanto", "en cuánto"],
-        "respuestas": [
-            "La mayoría de nuestros platillos están en **$120 pesos** 😄🌮 ¿Cuál platillo te interesa para confirmarte?",
-            "Normalmente andan en **$120** 💛 ¿Quieres desayunos, antojitos o comidas?"
-        ]
-    },
-
-    "recomendaciones": {
-        "patrones": ["recomienda", "recomendacion", "recomendación", "que me recomiendas", "qué me recomiendas", "sugieres", "popular", "mas vendido", "más vendido", "top"],
-        "respuestas": [
-            "🔥 Recomendación de la casa: **Chilaquiles rojos con huevo** 😋\nTambién rifan las **Enmoladas de Pollo**.\n¿Prefieres **rojo** o **verde**?",
-            "Si quieres irte a la segura 😄: **Huevos Rancheros** o **Chilaquiles**.\nSi quieres algo bien tradicional: **Mole de Pollo** ✨"
-        ]
-    },
-
-    "disponibilidad": {
-        "patrones": ["disponible", "esta disponible", "está disponible", "hay disponible", "tienen", "hay", "si hay", "si tienen"],
-        "respuestas": [
-            "Dime el platillo que buscas 😄 y te confirmo disponibilidad. ¿Cuál se te antojó?",
-            "¡Va! 👌 ¿Qué platillo quieres? (Ej: *chilaquiles rojos*, *mole de pollo*)"
-        ]
-    },
-
-    "horarios": {
-        "patrones": ["horario", "cuando abren", "cuándo abren", "hora", "abierto", "cierran", "a que hora", "a qué hora"],
-        "respuestas": [
-            "🕒 Nuestro horario es **de 9:00 am a 4:00 pm** todos los días 😄",
-            "Estamos atendiendo **de 9:00 am a 4:00 pm** ⏰ ¿Quieres ordenar por WhatsApp?"
-        ]
-    },
-
-    "entrega": {
-        "patrones": ["entrega", "domicilio", "envio", "envío", "llevan", "delivery", "reparto", "mandan", "mandas", "me lo traen"],
-        "respuestas": [
-            "🚚 Sí hacemos entrega a domicilio, y en lugares cercanos es **GRATIS** 😄\nDime tu **colonia** para confirmar cobertura.",
-            "¡Claro! 📦 ¿En qué **colonia** estás? Así te digo si entra en entrega **GRATIS**."
-        ]
-    },
-
-    "pagos": {
-        "patrones": ["como pago", "cómo pago", "pagar", "metodos de pago", "métodos de pago", "tarjeta", "efectivo", "transferencia"],
-        "respuestas": [
-            "Aceptamos **efectivo, transferencia y tarjeta** 💳✨ ¿Vas a recoger o quieres entrega a domicilio?",
-            "Puedes pagar en **efectivo**, **transferencia** o **tarjeta** 😄"
-        ]
-    },
-
-    "ubicacion": {
-        "patrones": ["donde estan", "dónde están", "ubicacion", "ubicación", "direccion", "dirección", "como llego", "cómo llego", "maps", "google"],
-        "respuestas": [
-            "Estamos en **Tijuana, Baja California** 📍\nSi me dices tu zona/colonia te doy referencia y confirmo si te queda cerca 😄",
-            "Pásame tu colonia y te digo qué tan cerca estás 📍😄"
-        ]
-    },
-
-    "wifi": {
-        "patrones": ["wifi", "internet", "contraseña", "clave", "password", "wi-fi"],
-        "respuestas": [
-            "Sí tenemos **WiFi** para clientes 😄📶 La clave te la comparten en caja o el personal, ¡nomás pídela!",
-            "Claro 📶 Pídele la clave del WiFi al personal y te la pasan en corto 😄"
-        ]
-    },
-
-    "telefono": {
-        "patrones": ["telefono", "teléfono", "numero", "número", "llamar", "contacto", "whatsapp", "wasap", "wsp"],
-        "respuestas": [
-            "📲 Nuestro WhatsApp es **664-563-16-75** 😄\nSi quieres, dime qué vas a pedir y te ayudo a armar tu orden.",
-            "¡Claro! Escríbenos por WhatsApp: **664-563-16-75** 📲✨"
-        ]
-    },
-
-    "ordenar": {
-        "patrones": ["quiero pedir", "quiero ordenar", "hacer pedido", "hacer un pedido", "ordenar", "pedido", "para llevar", "pickup", "recoger"],
-        "respuestas": [
-            "¡Va! 😄 Para armar tu pedido dime:\n1) Platillo(s)\n2) ¿Entrega o para recoger?\n3) Tu colonia (si es entrega)\n📲 WhatsApp: **664-563-16-75**",
-            "Perfecto 🔥 ¿Qué vas a pedir y cuántos? (Ej: *2 chilaquiles rojos con huevo*)"
-        ]
-    },
-
-    "fallback": {
-        "patrones": [],
-        "respuestas": [
-            "Perdón 😅 no caché bien. ¿Quieres ver el **menú**, **horarios**, **entrega** o **hacer un pedido**?",
-            "Dime si buscas **menú**, **precios**, **entrega** o **recomendación** 😄🌮"
-        ]
-    }
-}
-
-            self.guardar_conocimiento(conocimiento_inicial)
-            return conocimiento_inicial
-    
-    def guardar_conocimiento(self, conocimiento=None):
-        """Guarda el conocimiento en un archivo JSON"""
-        if conocimiento is None:
-            conocimiento = self.conocimiento
-        with open(self.archivo_conocimiento, 'w', encoding='utf-8') as f:
-            json.dump(conocimiento, f, ensure_ascii=False, indent=4)
-    
-    def similitud_texto(self, texto1, texto2):
-        """Calcula la similitud entre dos textos"""
-        return SequenceMatcher(None, texto1.lower(), texto2.lower()).ratio()
-    
     def limpiar_texto(self, texto):
         """Limpia y normaliza el texto del usuario"""
         texto = texto.lower()
         texto = re.sub(r'[¿?¡!.,;]', '', texto)
         return texto.strip()
+    
+    def similitud_texto(self, texto1, texto2):
+        """Calcula la similitud entre dos textos"""
+        return SequenceMatcher(None, texto1.lower(), texto2.lower()).ratio()
     
     def buscar_platillo(self, nombre_platillo):
         """Busca un platillo en el menú por nombre"""
@@ -245,78 +97,48 @@ class ChatbotRestaurante:
         
         return info
     
-    def listar_platillos_disponibles(self):
-        """Lista todos los platillos disponibles"""
-        disponibles = [p for p in self.menu if p['disponible']]
-        
-        if not disponibles:
-            return "Lo siento, no tenemos platillos disponibles en este momento."
-        
-        respuesta = "\n📋 **MENÚ DISPONIBLE**\n\n"
-        for platillo in disponibles:
-            precio = platillo['precio']
-            respuesta += f"• {platillo['nombre']} - ${precio}"
-            if platillo.get('mas_vendido'):
-                respuesta += " ⭐"
-            if platillo.get('popular'):
-                respuesta += " 🔥"
-            respuesta += "\n"
-        
-        respuesta += "\n💬 ¿Quieres información detallada de algún platillo?"
-        return respuesta
-    
-    def encontrar_mejor_respuesta(self, mensaje_usuario):
-        """Encuentra la mejor respuesta basada en patrones"""
-        mensaje_limpio = self.limpiar_texto(mensaje_usuario)
-        
-        # Verificar si está preguntando por un platillo específico
-        if any(palabra in mensaje_limpio for palabra in ['info', 'informacion', 'detalles', 'dame', 'quiero']):
-            for platillo in self.menu:
-                nombre_plat = self.limpiar_texto(platillo['nombre'])
-                if nombre_plat in mensaje_limpio or self.similitud_texto(nombre_plat, mensaje_limpio) > 0.7:
-                    return self.formatear_platillo(platillo)
-        
-        mejor_coincidencia = None
-        mejor_puntuacion = 0
-        
-        for categoria, datos in self.conocimiento.items():
-            for patron in datos['patrones']:
-                if patron in mensaje_limpio:
-                    puntuacion = 1.0
-                else:
-                    puntuacion = self.similitud_texto(patron, mensaje_limpio)
-                
-                if puntuacion > mejor_puntuacion and puntuacion > 0.6:
-                    mejor_puntuacion = puntuacion
-                    mejor_coincidencia = categoria
-        
-        if mejor_coincidencia:
-            import random
-            respuesta = random.choice(self.conocimiento[mejor_coincidencia]['respuestas'])
-            
-            if mejor_coincidencia == 'menu_completo':
-                respuesta += self.listar_platillos_disponibles()
-            
-            return respuesta
-        
-        return None
-    
     def responder(self, mensaje_usuario):
         """Genera una respuesta al mensaje del usuario"""
-        respuesta = self.encontrar_mejor_respuesta(mensaje_usuario)
         
-        if respuesta:
-            return respuesta
-        else:
-            platillos_encontrados = self.buscar_platillo(mensaje_usuario)
-            if platillos_encontrados:
-                respuesta = "Encontré estos platillos:\n"
-                for platillo in platillos_encontrados:
-                    respuesta += self.formatear_platillo(platillo) + "\n"
-                return respuesta
+        # Primero intentar buscar platillos específicos mencionados
+        platillos_encontrados = self.buscar_platillo(mensaje_usuario)
+        if platillos_encontrados and len(platillos_encontrados) > 0:
+            # Si la similitud es muy alta, probablemente está preguntando por ese platillo
+            nombre_limpio = self.limpiar_texto(mensaje_usuario)
+            for platillo in self.menu:
+                if self.similitud_texto(nombre_limpio, self.limpiar_texto(platillo['nombre'])) > 0.8:
+                    return self.formatear_platillo(platillo)
+        
+        # Usar red neuronal si está disponible
+        if self.usar_neural and self.clasificador:
+            resultado = self.clasificador.obtener_respuesta(mensaje_usuario)
             
-            return ("Lo siento, no entendí bien. Puedes preguntarme sobre nuestro menú, "
-                   "precios, horarios, entregas o algún platillo específico.")
+            # Si la confianza es buena, usar la respuesta de la red neuronal
+            if resultado['confianza'] > 0.3:
+                respuesta = resultado['respuesta']
+                
+                # Log para debugging (opcional, puedes quitar esto en producción)
+                print(f"[Neural] Intención: {resultado['intencion']} ({resultado['confianza']:.1%})")
+                
+                return respuesta
+        
+        # Respaldo: buscar platillos si no se encontró intención clara
+        if platillos_encontrados:
+            respuesta = "Encontré estos platillos:\n"
+            for platillo in platillos_encontrados:
+                respuesta += self.formatear_platillo(platillo) + "\n"
+            return respuesta
+        
+        # Respuesta por defecto
+        return ("Lo siento, no entendí bien 😅\n"
+                "Puedes preguntarme sobre:\n"
+                "• **Menú** - Ver platillos\n"
+                "• **Precios** - Costos\n"
+                "• **Horario** - Cuándo abrimos\n"
+                "• **Entrega** - Servicio a domicilio\n"
+                "• **Ordenar** - Hacer pedido\n\n"
+                "📲 WhatsApp: **664-563-16-75**")
+
 
 # Instancia global del chatbot
 bot = ChatbotRestaurante()
@@ -327,16 +149,18 @@ bot = ChatbotRestaurante()
 def home():
     """Página de inicio de la API"""
     return jsonify({
-        "mensaje": "API del Chatbot Restaurante",
-        "version": "1.0",
+        "mensaje": "API del Chatbot La Taza Loca",
+        "version": "2.0 - Con Red Neuronal",
         "status": "running",
+        "modelo_neural": bot.usar_neural,
         "endpoints": {
             "/chat": "POST - Enviar mensaje al chatbot",
             "/menu": "GET - Obtener menú completo",
             "/menu/disponibles": "GET - Obtener solo platillos disponibles",
-            "/platillo/<id>": "GET - Obtener información de un platillo específico",
+            "/platillo/<id>": "GET - Información de un platillo",
             "/buscar": "POST - Buscar platillos",
-            "/estadisticas": "GET - Estadísticas del menú"
+            "/estadisticas": "GET - Estadísticas del menú",
+            "/health": "GET - Estado del servicio"
         }
     })
 
@@ -356,7 +180,8 @@ def chat():
         
         return jsonify({
             "respuesta": respuesta,
-            "status": "success"
+            "status": "success",
+            "modelo": "neural" if bot.usar_neural else "patrones"
         })
     
     except Exception as e:
@@ -401,7 +226,7 @@ def obtener_platillo(platillo_id):
         }), 404
 
 @app.route('/buscar', methods=['POST'])
-def buscar_platillo():
+def buscar_platillo_endpoint():
     """Busca platillos por nombre"""
     try:
         data = request.get_json()
@@ -440,16 +265,42 @@ def estadisticas():
         "no_disponibles": total - disponibles,
         "mas_vendidos": mas_vendidos,
         "populares": populares,
+        "modelo_neural_activo": bot.usar_neural,
         "status": "success"
     })
 
-# Endpoint de salud para Render
 @app.route('/health')
 def health():
     """Health check para Render"""
-    return jsonify({"status": "healthy"}), 200
+    return jsonify({
+        "status": "healthy",
+        "modelo_neural": bot.usar_neural
+    }), 200
+
+@app.route('/reentrenar', methods=['POST'])
+def reentrenar():
+    """Endpoint para reentrenar el modelo (uso administrativo)"""
+    try:
+        from modelo_intenciones import ClasificadorIntenciones
+        
+        clasificador = ClasificadorIntenciones(archivo_datos='datos_entrenamiento.json')
+        clasificador.entrenar(epochs=200, verbose=0)
+        clasificador.guardar_modelo('modelo_chatbot')
+        
+        # Recargar el modelo en el bot
+        bot.cargar_modelo_neural()
+        
+        return jsonify({
+            "mensaje": "Modelo reentrenado exitosamente",
+            "status": "success"
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
 
 if __name__ == '__main__':
-    # Render asigna el puerto automáticamente
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
