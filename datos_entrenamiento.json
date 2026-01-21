@@ -1,0 +1,310 @@
+{
+    "intenciones": [
+        {
+            "tag": "saludo",
+            "patrones": [
+                "hola",
+                "buenos dias",
+                "buenas tardes",
+                "buenas noches",
+                "hey",
+                "que tal",
+                "holi",
+                "buenas",
+                "ola",
+                "buen dia",
+                "como estas",
+                "que onda",
+                "holaa",
+                "hola buenas",
+                "buenas buenas"
+            ],
+            "respuestas": [
+                "¡Hola! 👋 Bienvenido a **La Taza Loca** ☕🌮 ¿Qué se te antoja hoy?",
+                "¡Qué onda! 😄 Soy el asistente de **La Taza Loca**. ¿Te paso el menú o te recomiendo algo?"
+            ]
+        },
+        {
+            "tag": "despedida",
+            "patrones": [
+                "adios",
+                "hasta luego",
+                "chao",
+                "nos vemos",
+                "bye",
+                "gracias adios",
+                "sale bye",
+                "ya me voy",
+                "eso es todo",
+                "nada mas gracias",
+                "listo gracias",
+                "ok bye"
+            ],
+            "respuestas": [
+                "¡Con gusto! 😄🌮 Cuando gustes te atendemos. ¡Bonito día!",
+                "¡Gracias por tu preferencia! ☕✨ Te esperamos pronto."
+            ]
+        },
+        {
+            "tag": "agradecimiento",
+            "patrones": [
+                "gracias",
+                "muchas gracias",
+                "te agradezco",
+                "mil gracias",
+                "ok gracias",
+                "vale gracias",
+                "super gracias",
+                "genial gracias",
+                "perfecto gracias"
+            ],
+            "respuestas": [
+                "¡De nada! 😊 ¿Te puedo ayudar en algo más?",
+                "¡Con gusto! 🌮 Aquí estamos para servirte."
+            ]
+        },
+        {
+            "tag": "menu_completo",
+            "patrones": [
+                "menu",
+                "que tienen",
+                "que venden",
+                "que hay",
+                "platillos",
+                "comida",
+                "opciones",
+                "que ofrecen",
+                "lista de comida",
+                "todo el menu",
+                "pasame el menu",
+                "quiero ver el menu",
+                "muestrame el menu",
+                "tienen menu",
+                "que me puedes ofrecer"
+            ],
+            "respuestas": [
+                "Aquí va el **menú de La Taza Loca** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes/Rojos\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 WhatsApp: **664-563-16-75**"
+            ]
+        },
+        {
+            "tag": "menu_desayunos",
+            "patrones": [
+                "desayunos",
+                "para desayunar",
+                "huevos",
+                "omelette",
+                "que hay de desayuno",
+                "menu de desayuno",
+                "quiero desayunar",
+                "tienen desayunos",
+                "opciones de desayuno"
+            ],
+            "respuestas": [
+                "**DESAYUNOS 🍳**\n• Huevos Rancheros - $120\n• Huevos a la Mexicana - $120\n• Huevos con Jamón - $120\n• Huevos Divorciados - $120\n• Omelette de Queso - $120\n\n¿Cuál se te antoja? 😋"
+            ]
+        },
+        {
+            "tag": "menu_antojitos",
+            "patrones": [
+                "antojitos",
+                "chilaquiles",
+                "enmoladas",
+                "enchiladas",
+                "flautas",
+                "chiles rellenos",
+                "algo mexicano",
+                "antojitos mexicanos",
+                "tienen chilaquiles",
+                "hay enmoladas"
+            ],
+            "respuestas": [
+                "**ANTOJITOS 🌮🔥**\n• Flautas de Pollo - $120\n• Chilaquiles Verdes con Huevo - $120\n• Chilaquiles Rojos con Huevo - $120\n• Enmoladas de Pollo - $120\n• Enchiladas de Pollo - $120\n• Chiles Rellenos de Queso - $120\n\n¿Rojos o verdes? 😄"
+            ]
+        },
+        {
+            "tag": "menu_comidas",
+            "patrones": [
+                "comidas",
+                "platillos fuertes",
+                "comida corrida",
+                "mole",
+                "pechuga",
+                "puerco",
+                "algo fuerte",
+                "plato fuerte",
+                "para comer"
+            ],
+            "respuestas": [
+                "**COMIDAS 🍛**\n• Pechuga en Chipotle - $120\n• Mole de Pollo - $120\n• Puerco en Salsa Verde - $120\n\n¿Te late el mole o prefieres algo con cremita? 🔥"
+            ]
+        },
+        {
+            "tag": "precios",
+            "patrones": [
+                "precios",
+                "cuanto cuesta",
+                "cuanto vale",
+                "que precio tiene",
+                "a como esta",
+                "a como es",
+                "esta caro",
+                "es barato",
+                "cuanto sale",
+                "precio del menu",
+                "en cuanto sale"
+            ],
+            "respuestas": [
+                "La mayoría de platillos están en **$120 pesos** 😄🌮 ¿Cuál te interesa?",
+                "Nuestros platillos andan en **$120** 💛 ¿Quieres ver el menú completo?"
+            ]
+        },
+        {
+            "tag": "horario",
+            "patrones": [
+                "horario",
+                "a que hora abren",
+                "cuando abren",
+                "a que hora cierran",
+                "estan abiertos",
+                "hora de servicio",
+                "hasta que hora",
+                "ya abrieron",
+                "todavia estan abiertos",
+                "horarios de atencion"
+            ],
+            "respuestas": [
+                "🕒 Nuestro horario es **de 9:00 am a 4:00 pm** todos los días 😄",
+                "Atendemos **de 9:00 am a 4:00 pm** ⏰ ¿Quieres hacer un pedido?"
+            ]
+        },
+        {
+            "tag": "ubicacion",
+            "patrones": [
+                "donde estan",
+                "ubicacion",
+                "direccion",
+                "como llego",
+                "donde se ubican",
+                "donde los encuentro",
+                "en que zona",
+                "tienen local",
+                "donde queda",
+                "mandame ubicacion"
+            ],
+            "respuestas": [
+                "📍 Estamos en **Tijuana, Baja California**\nDime tu colonia y te confirmo si hacemos entrega 😄",
+                "Estamos en **Tijuana** 📍 ¿Quieres que te confirmemos cobertura de entrega?"
+            ]
+        },
+        {
+            "tag": "entrega",
+            "patrones": [
+                "hacen entregas",
+                "entrega a domicilio",
+                "delivery",
+                "llevan a domicilio",
+                "envio",
+                "me lo pueden traer",
+                "reparten",
+                "mandan comida",
+                "domicilio",
+                "entregan en mi zona"
+            ],
+            "respuestas": [
+                "🚚 Sí hacemos entrega a domicilio **GRATIS** en zonas cercanas 😄\n¿En qué colonia estás?",
+                "¡Claro! 📦 Entrega **GRATIS** en lugares cercanos. Dime tu **colonia** para confirmar."
+            ]
+        },
+        {
+            "tag": "contacto",
+            "patrones": [
+                "telefono",
+                "numero",
+                "whatsapp",
+                "como los contacto",
+                "cel",
+                "celular",
+                "llamar",
+                "contacto",
+                "como te hablo",
+                "pasame el numero"
+            ],
+            "respuestas": [
+                "📲 WhatsApp: **664-563-16-75**\n¿Quieres hacer un pedido? 😄",
+                "Escríbenos al **664-563-16-75** 📲✨ ¡Con gusto te atendemos!"
+            ]
+        },
+        {
+            "tag": "ordenar",
+            "patrones": [
+                "quiero pedir",
+                "quiero ordenar",
+                "hacer pedido",
+                "para llevar",
+                "voy a ordenar",
+                "me das",
+                "quiero unos",
+                "dame unos",
+                "ponme",
+                "anotame",
+                "quiero comprar"
+            ],
+            "respuestas": [
+                "¡Va! 😄 Dime:\n1) ¿Qué platillo(s)?\n2) ¿Entrega o recoges?\n3) Tu colonia (si es entrega)\n\n📲 O pide directo: **664-563-16-75**",
+                "Perfecto 🔥 ¿Qué vas a pedir? (Ej: *2 chilaquiles rojos*)"
+            ]
+        },
+        {
+            "tag": "recomendacion",
+            "patrones": [
+                "que me recomiendas",
+                "recomiendame algo",
+                "que esta bueno",
+                "que es lo mejor",
+                "mas vendido",
+                "popular",
+                "favorito",
+                "sugerencia",
+                "que pido",
+                "no se que pedir"
+            ],
+            "respuestas": [
+                "🔥 Te recomiendo los **Chilaquiles rojos con huevo** o las **Enmoladas de Pollo** ¡Son los favoritos!",
+                "Los más pedidos: **Huevos Rancheros** y **Chilaquiles** 😋 ¿Te animas?"
+            ]
+        },
+        {
+            "tag": "pago",
+            "patrones": [
+                "como pago",
+                "metodos de pago",
+                "aceptan tarjeta",
+                "efectivo",
+                "transferencia",
+                "puedo pagar con",
+                "formas de pago",
+                "pago en efectivo",
+                "aceptan efectivo"
+            ],
+            "respuestas": [
+                "Aceptamos **efectivo, transferencia y tarjeta** 💳✨",
+                "Puedes pagar con **efectivo**, **transferencia** o **tarjeta** 😄"
+            ]
+        },
+        {
+            "tag": "informacion_negocio",
+            "patrones": [
+                "que es la taza loca",
+                "informacion del restaurante",
+                "sobre ustedes",
+                "que tipo de comida",
+                "a que se dedican",
+                "cuentenme de ustedes",
+                "que ofrecen"
+            ],
+            "respuestas": [
+                "☕🌮 **La Taza Loca** es un restaurante de comida mexicana en Tijuana.\n\n🕒 Horario: 9am - 4pm\n📲 WhatsApp: 664-563-16-75\n🚚 Entrega GRATIS en zonas cercanas\n\n¿Te paso el menú? 😄"
+            ]
+        }
+    ]
+}
