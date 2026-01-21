@@ -100,7 +100,13 @@ class ChatbotRestaurante:
                         "Estamos ubicados en Tijuana, Baja California. ¿Quieres que te enviemos la dirección exacta?",
                         "Nos encontramos en Tijuana. Puedo darte más detalles de la ubicación si gustas."
                     ]
-                }
+                },
+                    "wifi": {
+        "patrones": ["wifi", "internet"],
+        "respuestas": [
+            "Tenemos WIFI gratuito para clientes"
+        ]
+    }
             }
             self.guardar_conocimiento(conocimiento_inicial)
             return conocimiento_inicial
