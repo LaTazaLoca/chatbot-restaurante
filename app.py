@@ -186,7 +186,7 @@ class ChatbotRestaurante:
         if any(palabra in mensaje_limpio for palabra in ['info', 'informacion', 'detalles', 'dame', 'quiero']):
             for platillo in self.menu:
                 nombre_plat = self.limpiar_texto(platillo['nombre'])
-                if nombre_plat en mensaje_limpio or self.similitud_texto(nombre_plat, mensaje_limpio) > 0.7:
+                if nombre_plat in mensaje_limpio or self.similitud_texto(nombre_plat, mensaje_limpio) > 0.7:
                     return self.formatear_platillo(platillo)
         
         mejor_coincidencia = None
