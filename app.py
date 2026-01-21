@@ -28,92 +28,154 @@ class ChatbotRestaurante:
             with open(self.archivo_conocimiento, 'r', encoding='utf-8') as f:
                 return json.load(f)
         else:
-            conocimiento_inicial = {
+conocimiento_inicial = {
+    "meta": {
+        "nombre_negocio": "La Taza Loca",
+        "whatsapp": "664-563-16-75",
+        "whatsapp_link": "https://wa.me/526645631675",
+        "horario": "De 9:00 am a 4:00 pm",
+        "zona": "Tijuana, Baja California",
+        "entrega": "🚚 Entrega a domicilio GRATIS en lugares cercanos (sujeto a zona).",
+        "nota": "Si necesitas dirección exacta, pide la ubicación al personal o comparte tu colonia para confirmar entrega."
+    },
+
     "saludos": {
-        "patrones": ["hola", "buenos dias", "buenas tardes", "buenas noches", "hey", "que tal"],
+        "patrones": ["hola", "buenos dias", "buen día", "buenas tardes", "buenas noches", "hey", "que tal", "qué tal", "holi", "buenas"],
         "respuestas": [
-            "¡Hola! Bienvenido a nuestro restaurante. ¿En qué puedo ayudarte?",
-            "¡Buen día! ¿Quieres conocer nuestro menú?"
+            "¡Hola! 👋 Bienvenido a **La Taza Loca** ☕🌮 ¿Qué se te antoja hoy: **desayuno**, **antojitos** o **comida**?",
+            "¡Qué onda! 😄 Soy el asistente de **La Taza Loca**. ¿Quieres que te pase el **menú** o te recomiendo algo 🔥?"
         ]
     },
+
     "despedidas": {
-        "patrones": ["adios", "hasta luego", "chao", "nos vemos", "bye", "gracias"],
+        "patrones": ["adios", "adiós", "hasta luego", "chao", "nos vemos", "bye", "gracias", "sale", "va", "ok gracias", "muchas gracias"],
         "respuestas": [
-            "¡Hasta pronto! Que disfrutes tu comida.",
-            "¡Gracias por tu preferencia! Nos vemos pronto."
+            "¡Con gusto! 😄🌮 Cuando gustes te atendemos. ¡Bonito día!",
+            "¡Gracias por tu preferencia! ☕✨ Si quieres ordenar, mándanos WhatsApp: **664-563-16-75** 📲"
         ]
     },
+
     "menu_completo": {
-        "patrones": ["menu", "que venden", "platillos", "comida", "opciones"],
+        "patrones": ["menu", "menú", "que venden", "platillos", "comida", "opciones", "que hay", "qué hay", "lista"],
         "respuestas": [
-            "Tenemos deliciosos platillos mexicanos. ¿Te gustaría ver desayunos?",
-            "Nuestro menú incluye desayunos tradicionales mexicanos."
+            "Aquí va el **menú de La Taza Loca** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes con Huevo\n• Chilaquiles Rojos con Huevo\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos de Queso\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 Ordena por WhatsApp: **664-563-16-75**\n🕒 Horario: **9:00 am a 4:00 pm**\n🚚 Entrega GRATIS en lugares cercanos (sujeto a zona).",
+            "¿Qué te interesa ver primero? 😄\n1) **Desayunos** 🍳\n2) **Antojitos** 🌮\n3) **Comidas** 🍛\nDime el número y te lo paso."
         ]
     },
+
+    "menu_desayunos": {
+        "patrones": ["desayunos", "huevos", "omelette", "omelet", "desayuno"],
+        "respuestas": [
+            "**DESAYUNOS 🍳**\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n¿Te antoja algo en especial? 😋",
+            "En desayunos tenemos huevos de varios estilos y omelette 🧀 ¿Quieres algo más picosito 🌶️ o más tranqui?"
+        ]
+    },
+
+    "menu_antojitos": {
+        "patrones": ["antojitos", "chilaquiles", "enmoladas", "enchiladas", "flautas", "chiles rellenos", "chile relleno"],
+        "respuestas": [
+            "**ANTOJITOS 🌮🔥**\n• Flautas de Pollo\n• Chilaquiles Verdes con Huevo\n• Chilaquiles Rojos con Huevo\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos de Queso\n\n¿Los quieres **rojos o verdes**? 😄",
+            "Ufff antojitos tenemos de los buenos 😋 ¿Te recomiendo **chilaquiles rojos** o **enmoladas**?"
+        ]
+    },
+
+    "menu_comidas": {
+        "patrones": ["comidas", "mole", "chipotle", "puerco", "salsa verde", "comida corrida", "platillo fuerte"],
+        "respuestas": [
+            "**COMIDAS 🍛**\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n¿Te late más algo cremosito (chipotle) o algo tradicional (mole)? 🔥",
+            "Para comida te recomiendo el **mole de pollo** si quieres algo tradicional 😋 o la **pechuga en chipotle** si quieres cremita 🌶️"
+        ]
+    },
+
     "precios": {
-        "patrones": ["precio", "costo", "cuanto cuesta", "cuanto vale"],
+        "patrones": ["precio", "costo", "cuanto cuesta", "cuánto cuesta", "cuanto vale", "cuánto vale", "precios", "en cuanto", "en cuánto"],
         "respuestas": [
-            "La mayoría de nuestros platillos cuestan $120 pesos.",
-            "Nuestros desayunos están en $120 pesos."
+            "La mayoría de nuestros platillos están en **$120 pesos** 😄🌮 ¿Cuál platillo te interesa para confirmarte?",
+            "Normalmente andan en **$120** 💛 ¿Quieres desayunos, antojitos o comidas?"
         ]
     },
+
     "recomendaciones": {
-        "patrones": ["recomienda", "recomendacion", "que me recomiendas", "sugieres", "popular"],
+        "patrones": ["recomienda", "recomendacion", "recomendación", "que me recomiendas", "qué me recomiendas", "sugieres", "popular", "mas vendido", "más vendido", "top"],
         "respuestas": [
-            "Te recomiendo nuestros Chilaquiles Rojos, son los más vendidos.",
-            "Las Enmoladas de Pollo son muy populares."
+            "🔥 Recomendación de la casa: **Chilaquiles rojos con huevo** 😋\nTambién rifan las **Enmoladas de Pollo**.\n¿Prefieres **rojo** o **verde**?",
+            "Si quieres irte a la segura 😄: **Huevos Rancheros** o **Chilaquiles**.\nSi quieres algo bien tradicional: **Mole de Pollo** ✨"
         ]
     },
+
     "disponibilidad": {
-        "patrones": ["disponible", "esta disponible", "hay disponible"],
+        "patrones": ["disponible", "esta disponible", "está disponible", "hay disponible", "tienen", "hay", "si hay", "si tienen"],
         "respuestas": [
-            "Déjame verificar la disponibilidad. ¿Qué platillo te interesa?",
-            "La mayoría de nuestros platillos están disponibles."
+            "Dime el platillo que buscas 😄 y te confirmo disponibilidad. ¿Cuál se te antojó?",
+            "¡Va! 👌 ¿Qué platillo quieres? (Ej: *chilaquiles rojos*, *mole de pollo*)"
         ]
     },
+
     "horarios": {
-        "patrones": ["horario", "cuando abren", "hora", "abierto"],
+        "patrones": ["horario", "cuando abren", "cuándo abren", "hora", "abierto", "cierran", "a que hora", "a qué hora"],
         "respuestas": [
-            "Estamos abiertos de Lunes a Domingo de 8:00 AM a 4:00 PM.",
-            "Nuestro horario es de 8:00 AM a 4:00 PM todos los días."
+            "🕒 Nuestro horario es **de 9:00 am a 4:00 pm** todos los días 😄",
+            "Estamos atendiendo **de 9:00 am a 4:00 pm** ⏰ ¿Quieres ordenar por WhatsApp?"
         ]
     },
+
     "entrega": {
-        "patrones": ["entrega", "domicilio", "envio", "llevan", "delivery"],
+        "patrones": ["entrega", "domicilio", "envio", "envío", "llevan", "delivery", "reparto", "mandan", "mandas", "me lo traen"],
         "respuestas": [
-            "Sí, hacemos entregas a domicilio en Tijuana.",
-            "Realizamos entregas en Tijuana. ¿En qué colonia te encuentras?"
+            "🚚 Sí hacemos entrega a domicilio, y en lugares cercanos es **GRATIS** 😄\nDime tu **colonia** para confirmar cobertura.",
+            "¡Claro! 📦 ¿En qué **colonia** estás? Así te digo si entra en entrega **GRATIS**."
         ]
     },
+
     "pagos": {
-        "patrones": ["como pago", "pagar", "metodos de pago", "tarjeta", "efectivo"],
+        "patrones": ["como pago", "cómo pago", "pagar", "metodos de pago", "métodos de pago", "tarjeta", "efectivo", "transferencia"],
         "respuestas": [
-            "Aceptamos efectivo, transferencia y tarjeta de crédito/débito.",
-            "Puedes pagar en efectivo, transferencia bancaria o con tarjeta."
+            "Aceptamos **efectivo, transferencia y tarjeta** 💳✨ ¿Vas a recoger o quieres entrega a domicilio?",
+            "Puedes pagar en **efectivo**, **transferencia** o **tarjeta** 😄"
         ]
     },
+
     "ubicacion": {
-        "patrones": ["donde estan", "ubicacion", "direccion", "como llego"],
+        "patrones": ["donde estan", "dónde están", "ubicacion", "ubicación", "direccion", "dirección", "como llego", "cómo llego", "maps", "google"],
         "respuestas": [
-            "Estamos ubicados en Tijuana, Baja California.",
-            "Nos encontramos en Tijuana. ¿Quieres la dirección exacta?"
+            "Estamos en **Tijuana, Baja California** 📍\nSi me dices tu zona/colonia te doy referencia y confirmo si te queda cerca 😄",
+            "Pásame tu colonia y te digo qué tan cerca estás 📍😄"
         ]
     },
+
     "wifi": {
         "patrones": ["wifi", "internet", "contraseña", "clave", "password", "wi-fi"],
         "respuestas": [
-            "Tenemos WIFI gratuito para clientes. La contraseña es TazaLoca2025.",
-            "Sí, contamos con internet WiFi. Pregunta al mesero por la clave."
+            "Sí tenemos **WiFi** para clientes 😄📶 La clave te la comparten en caja o el personal, ¡nomás pídela!",
+            "Claro 📶 Pídele la clave del WiFi al personal y te la pasan en corto 😄"
         ]
     },
+
     "telefono": {
-        "patrones": ["telefono", "numero", "llamar", "contacto", "whatsapp"],
+        "patrones": ["telefono", "teléfono", "numero", "número", "llamar", "contacto", "whatsapp", "wasap", "wsp"],
         "respuestas": [
-            "Puedes llamarnos al (664) 123-4567.",
-            "Nuestro WhatsApp es (664) 123-4567. ¡Escríbenos!"
+            "📲 Nuestro WhatsApp es **664-563-16-75** 😄\nSi quieres, dime qué vas a pedir y te ayudo a armar tu orden.",
+            "¡Claro! Escríbenos por WhatsApp: **664-563-16-75** 📲✨"
+        ]
+    },
+
+    "ordenar": {
+        "patrones": ["quiero pedir", "quiero ordenar", "hacer pedido", "hacer un pedido", "ordenar", "pedido", "para llevar", "pickup", "recoger"],
+        "respuestas": [
+            "¡Va! 😄 Para armar tu pedido dime:\n1) Platillo(s)\n2) ¿Entrega o para recoger?\n3) Tu colonia (si es entrega)\n📲 WhatsApp: **664-563-16-75**",
+            "Perfecto 🔥 ¿Qué vas a pedir y cuántos? (Ej: *2 chilaquiles rojos con huevo*)"
+        ]
+    },
+
+    "fallback": {
+        "patrones": [],
+        "respuestas": [
+            "Perdón 😅 no caché bien. ¿Quieres ver el **menú**, **horarios**, **entrega** o **hacer un pedido**?",
+            "Dime si buscas **menú**, **precios**, **entrega** o **recomendación** 😄🌮"
         ]
     }
 }
+
             self.guardar_conocimiento(conocimiento_inicial)
             return conocimiento_inicial
     
