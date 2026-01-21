@@ -29,87 +29,91 @@ class ChatbotRestaurante:
                 return json.load(f)
         else:
             conocimiento_inicial = {
-                "saludos": {
-                    "patrones": ["hola", "buenos dias", "buenas tardes", "buenas noches", "hey", "que tal", "que onda"],
-                    "respuestas": [
-                        "¡Hola! Bienvenido a nuestro restaurante. ¿En qué puedo ayudarte?",
-                        "¡Buen día! ¿Quieres conocer nuestro menú o tienes alguna pregunta?",
-                        "¡Hola! Estoy aquí para ayudarte con tu pedido o resolver tus dudas."
-                    ]
-                },
-                "despedidas": {
-                    "patrones": ["adios", "hasta luego", "chao", "nos vemos", "bye", "gracias", "eso es todo"],
-                    "respuestas": [
-                        "¡Hasta pronto! Que disfrutes tu comida.",
-                        "¡Que tengas un excelente día! Vuelve cuando quieras.",
-                        "¡Gracias por tu preferencia! Nos vemos pronto."
-                    ]
-                },
-                "menu_completo": {
-                    "patrones": ["menu", "que venden", "que tienen", "platillos", "comida", "que hay", "opciones"],
-                    "respuestas": [
-                        "Tenemos deliciosos platillos mexicanos. ¿Te gustaría ver desayunos o algún platillo en particular?",
-                        "Nuestro menú incluye desayunos tradicionales mexicanos. ¿Quieres que te recomiende algo?"
-                    ]
-                },
-                "precios": {
-                    "patrones": ["precio", "costo", "cuanto cuesta", "cuanto vale", "precios"],
-                    "respuestas": [
-                        "La mayoría de nuestros platillos tienen un precio de $120 pesos. ¿Te gustaría saber el precio de algún platillo en específico?",
-                        "Nuestros desayunos cuestan $120 pesos. ¿Quieres información sobre algún platillo?"
-                    ]
-                },
-                "recomendaciones": {
-                    "patrones": ["recomienda", "recomendacion", "que me recomiendas", "sugieres", "que pido", "popular", "favorito"],
-                    "respuestas": [
-                        "Te recomiendo nuestros Chilaquiles Rojos con Huevo, son los más vendidos. También las Enmoladas de Pollo son muy populares.",
-                        "¡Nuestros platillos estrella son los Chilaquiles Rojos y las Enmoladas de Pollo! Son deliciosos."
-                    ]
-                },
-           "disponibilidad": {
-    "patrones": ["disponible platillo", "tienen platillo", "hay platillo", "esta disponible"],
-    "respuestas": [
-        "Déjame verificar la disponibilidad. ¿Qué platillo te interesa?",
-        "La mayoría de nuestros platillos están disponibles. ¿Cuál te gustaría ordenar?"
-    ]
-},
-                "horarios": {
-                    "patrones": ["horario", "horarios", "cuando abren", "hora", "abierto", "que hora cierran"],
-                    "respuestas": [
-                        "Estamos abiertos de Lunes a Domingo de 8:00 AM a 4:00 PM.",
-                        "Nuestro horario es de 8:00 AM a 4:00 PM todos los días."
-                    ]
-                },
-                "entrega": {
-                    "patrones": ["entrega", "domicilio", "envio", "llevan", "delivery"],
-                    "respuestas": [
-                        "Sí, hacemos entregas a domicilio en Tijuana. El costo de envío depende de tu ubicación.",
-                        "Realizamos entregas en Tijuana. ¿En qué colonia te encuentras?"
-                    ]
-                },
-                "pagos": {
-                    "patrones": ["como pago", "pagar", "metodos de pago", "formas de pago", "efectivo", "tarjeta"],
-                    "respuestas": [
-                        "Aceptamos efectivo, transferencia y tarjeta de crédito/débito.",
-                        "Puedes pagar en efectivo, transferencia bancaria o con tarjeta."
-                    ]
-                },
-                "ubicacion": {
-                    "patrones": ["donde estan", "ubicacion", "direccion", "donde", "como llego"],
-                    "respuestas": [
-                        "Estamos ubicados en Tijuana, Baja California. ¿Quieres que te enviemos la dirección exacta?",
-                        "Nos encontramos en Tijuana. Puedo darte más detalles de la ubicación si gustas."
-                    ]
-                },
-                    "wifi": {
-     "patrones": ["wifi", "internet", "contraseña wifi", "clave wifi", "wi-fi"],
-    "respuestas": [
-        "Tenemos WIFI gratuito para clientes. Pregunta al mesero por la contraseña.",
-        "Sí, contamos con internet WiFi. Pide la clave en caja.",
-        "La contraseña del WiFi es: TazaLoca2025"
-    ]
+    "saludos": {
+        "patrones": ["hola", "buenos dias", "buenas tardes", "buenas noches", "hey", "que tal"],
+        "respuestas": [
+            "¡Hola! Bienvenido a nuestro restaurante. ¿En qué puedo ayudarte?",
+            "¡Buen día! ¿Quieres conocer nuestro menú?"
+        ]
+    },
+    "despedidas": {
+        "patrones": ["adios", "hasta luego", "chao", "nos vemos", "bye", "gracias"],
+        "respuestas": [
+            "¡Hasta pronto! Que disfrutes tu comida.",
+            "¡Gracias por tu preferencia! Nos vemos pronto."
+        ]
+    },
+    "menu_completo": {
+        "patrones": ["menu", "que venden", "platillos", "comida", "opciones"],
+        "respuestas": [
+            "Tenemos deliciosos platillos mexicanos. ¿Te gustaría ver desayunos?",
+            "Nuestro menú incluye desayunos tradicionales mexicanos."
+        ]
+    },
+    "precios": {
+        "patrones": ["precio", "costo", "cuanto cuesta", "cuanto vale"],
+        "respuestas": [
+            "La mayoría de nuestros platillos cuestan $120 pesos.",
+            "Nuestros desayunos están en $120 pesos."
+        ]
+    },
+    "recomendaciones": {
+        "patrones": ["recomienda", "recomendacion", "que me recomiendas", "sugieres", "popular"],
+        "respuestas": [
+            "Te recomiendo nuestros Chilaquiles Rojos, son los más vendidos.",
+            "Las Enmoladas de Pollo son muy populares."
+        ]
+    },
+    "disponibilidad": {
+        "patrones": ["disponible", "esta disponible", "hay disponible"],
+        "respuestas": [
+            "Déjame verificar la disponibilidad. ¿Qué platillo te interesa?",
+            "La mayoría de nuestros platillos están disponibles."
+        ]
+    },
+    "horarios": {
+        "patrones": ["horario", "cuando abren", "hora", "abierto"],
+        "respuestas": [
+            "Estamos abiertos de Lunes a Domingo de 8:00 AM a 4:00 PM.",
+            "Nuestro horario es de 8:00 AM a 4:00 PM todos los días."
+        ]
+    },
+    "entrega": {
+        "patrones": ["entrega", "domicilio", "envio", "llevan", "delivery"],
+        "respuestas": [
+            "Sí, hacemos entregas a domicilio en Tijuana.",
+            "Realizamos entregas en Tijuana. ¿En qué colonia te encuentras?"
+        ]
+    },
+    "pagos": {
+        "patrones": ["como pago", "pagar", "metodos de pago", "tarjeta", "efectivo"],
+        "respuestas": [
+            "Aceptamos efectivo, transferencia y tarjeta de crédito/débito.",
+            "Puedes pagar en efectivo, transferencia bancaria o con tarjeta."
+        ]
+    },
+    "ubicacion": {
+        "patrones": ["donde estan", "ubicacion", "direccion", "como llego"],
+        "respuestas": [
+            "Estamos ubicados en Tijuana, Baja California.",
+            "Nos encontramos en Tijuana. ¿Quieres la dirección exacta?"
+        ]
+    },
+    "wifi": {
+        "patrones": ["wifi", "internet", "contraseña", "clave", "password", "wi-fi"],
+        "respuestas": [
+            "Tenemos WIFI gratuito para clientes. La contraseña es TazaLoca2025.",
+            "Sí, contamos con internet WiFi. Pregunta al mesero por la clave."
+        ]
+    },
+    "telefono": {
+        "patrones": ["telefono", "numero", "llamar", "contacto", "whatsapp"],
+        "respuestas": [
+            "Puedes llamarnos al (664) 123-4567.",
+            "Nuestro WhatsApp es (664) 123-4567. ¡Escríbenos!"
+        ]
     }
-            }
+}
             self.guardar_conocimiento(conocimiento_inicial)
             return conocimiento_inicial
     
