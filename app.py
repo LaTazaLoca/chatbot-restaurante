@@ -27,8 +27,8 @@ class ChatbotRestaurante:
         if os.path.exists(self.archivo_conocimiento):
             with open(self.archivo_conocimiento, 'r', encoding='utf-8') as f:
                 return json.load(f)
-        else:
-    conocimiento_inicial = {
+        else:                                                                                                                            
+            conocimiento_inicial = {
     "meta": {
         "nombre_negocio": "La Taza Loca",
         "whatsapp": "664-563-16-75",
