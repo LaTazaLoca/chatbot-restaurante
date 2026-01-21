@@ -29,15 +29,28 @@ class ChatbotRestaurante:
                 return json.load(f)
         else:                                                                                                                            
             conocimiento_inicial = {
-    "meta": {
-        "nombre_negocio": "La Taza Loca",
-        "whatsapp": "664-563-16-75",
-        "whatsapp_link": "https://wa.me/526645631675",
-        "horario": "De 9:00 am a 4:00 pm",
-        "zona": "Tijuana, Baja California",
-        "entrega": "🚚 Entrega a domicilio GRATIS en lugares cercanos (sujeto a zona).",
-        "nota": "Si necesitas dirección exacta, pide la ubicación al personal o comparte tu colonia para confirmar entrega."
-    },
+"meta": {
+    "patrones": [
+        "la taza loca", "taza loca", "tu nombre", "como se llaman", "cómo se llaman",
+        "info", "informacion", "información", "datos", "contacto", "contactar",
+        "whatsapp", "wsp", "wasap", "telefono", "teléfono", "numero", "número",
+        "horario", "abren", "cierran", "a que hora", "a qué hora",
+        "entrega", "domicilio", "delivery", "envio", "envío",
+        "ubicacion", "ubicación", "direccion", "dirección", "donde estan", "dónde están"
+    ],
+    "respuestas": [
+        "☕🌮 **La Taza Loca**\n📲 WhatsApp: **664-563-16-75**\n🕒 Horario: **9:00 am a 4:00 pm**\n🚚 Entrega a domicilio **GRATIS** en lugares cercanos (sujeto a zona).\n📍 Tijuana, Baja California.\n\n¿Quieres ver el **menú** o hacer un **pedido**? 😄",
+        "¡Claro! 😄\n📲 WhatsApp: **664-563-16-75**\n🕒 **9:00 am a 4:00 pm**\n🚚 Entrega **GRATIS** en cercanos (sujeto a zona)\n📍 Tijuana\n\nDime si buscas **menú**, **precios** o **recomendación** 🌮🔥"
+    ],
+
+    "nombre_negocio": "La Taza Loca",
+    "whatsapp": "664-563-16-75",
+    "whatsapp_link": "https://wa.me/526645631675",
+    "horario": "De 9:00 am a 4:00 pm",
+    "zona": "Tijuana, Baja California",
+    "entrega_texto": "🚚 Entrega a domicilio GRATIS en lugares cercanos (sujeto a zona).",
+    "nota": "Si necesitas dirección exacta, pide la ubicación al personal o comparte tu colonia para confirmar entrega."
+},
 
     "saludos": {
         "patrones": ["hola", "buenos dias", "buen día", "buenas tardes", "buenas noches", "hey", "que tal", "qué tal", "holi", "buenas"],
