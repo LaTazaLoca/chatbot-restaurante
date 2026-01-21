@@ -66,13 +66,13 @@ class ChatbotRestaurante:
                         "¡Nuestros platillos estrella son los Chilaquiles Rojos y las Enmoladas de Pollo! Son deliciosos."
                     ]
                 },
-                "disponibilidad": {
-                    "patrones": ["disponible", "tienen", "hay", "esta disponible", "tienen disponible"],
-                    "respuestas": [
-                        "Déjame verificar la disponibilidad. ¿Qué platillo te interesa?",
-                        "La mayoría de nuestros platillos están disponibles. ¿Cuál te gustaría ordenar?"
-                    ]
-                },
+           "disponibilidad": {
+    "patrones": ["disponible platillo", "tienen platillo", "hay platillo", "esta disponible"],
+    "respuestas": [
+        "Déjame verificar la disponibilidad. ¿Qué platillo te interesa?",
+        "La mayoría de nuestros platillos están disponibles. ¿Cuál te gustaría ordenar?"
+    ]
+},
                 "horarios": {
                     "patrones": ["horario", "horarios", "cuando abren", "hora", "abierto", "que hora cierran"],
                     "respuestas": [
