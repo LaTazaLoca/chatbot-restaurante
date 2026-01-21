@@ -102,10 +102,12 @@ class ChatbotRestaurante:
                     ]
                 },
                     "wifi": {
-        "patrones": ["wifi", "internet"],
-        "respuestas": [
-            "Tenemos WIFI gratuito para clientes"
-        ]
+     "patrones": ["wifi", "internet", "contraseña wifi", "clave wifi", "wi-fi"],
+    "respuestas": [
+        "Tenemos WIFI gratuito para clientes. Pregunta al mesero por la contraseña.",
+        "Sí, contamos con internet WiFi. Pide la clave en caja.",
+        "La contraseña del WiFi es: TazaLoca2025"
+    ]
     }
             }
             self.guardar_conocimiento(conocimiento_inicial)
