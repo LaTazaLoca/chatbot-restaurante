@@ -5,7 +5,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "2 huevos estrellados sobre tortilla, bañados en salsa roja y frijoles extra.",
         "foto": "huevos-rancheros.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -16,7 +16,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Huevo revuelto con jitomate, cebolla y chile. Acompañado de frijoles.",
         "foto": "huevos-mexicana.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -27,7 +27,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Huevo revuelto con jamón, servido con frijoles y tortillas.",
         "foto": "huevos-jamon.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -38,7 +38,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "2 huevos estrellados, uno en salsa verde y otro en salsa roja. Frijolitos al centro.",
         "foto": "huevos-divorciados.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -49,7 +49,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Flautas crujientes de pollo frito con queso, crema y lechuga.",
         "foto": "flautas-pollo.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -60,7 +60,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Huevo batido con queso derretido y ensalada ligera.",
         "foto": "omelette-queso.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -71,7 +71,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Totopos crujientes bañados en salsa verde, crema, queso y un huevo estrellado.",
         "foto": "chilaquiles-verdes.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 0,
         "oferta": 0,
         "descuento": 30
@@ -82,7 +82,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Totopos crujientes bañados en salsa roja, crema, queso y un huevo estrellado.",
         "foto": "chilaquiles-rojos.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30,
@@ -94,7 +94,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Tortillas rellenas de pollo bañadas en mole casero, crema y queso fresco.",
         "foto": "enmoladas-pollo.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30,
@@ -106,7 +106,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Pechuga de pollo en trozos en salsa chipotle Acompañado de arroz blanco y tortillas",
         "foto": "chipotle.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 0,
         "oferta": 0,
         "descuento": 30
@@ -117,7 +117,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Mole de pollo Acompañado con arroz blanco y tortillas",
         "foto": "mole.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 0,
         "oferta": 0,
         "descuento": 30
@@ -128,7 +128,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Tacos de pescado Acompañado de pico de gallo,aguacate y salsa de la que pica",
         "foto": "tacos-pescado.jpg",
-        "precio": 120,
+        "precio": 150,
         "disponible": 0,
         "oferta": 0,
         "descuento": 30
@@ -139,7 +139,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Puerco en salsa verde acompañado de arroz y tortillas de maiz",
         "foto": "puerco.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -150,7 +150,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Enchiladas de pollo, bañadas de crama y queso fresco, acompañado de arroz y tortillas de maiz",
         "foto": "enchiladas.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 30
@@ -161,7 +161,7 @@
         "categoria": "DESAYUNOS",
         "descripcion": "Chiles rellenos de queso, bañados en crema y salsa roja, acompañado de arroz y tortillas de maiz",
         "foto": "chilerelleno.webp",
-        "precio": 120,
+        "precio": 150,
         "disponible": 1,
         "oferta": 0,
         "descuento": 0
