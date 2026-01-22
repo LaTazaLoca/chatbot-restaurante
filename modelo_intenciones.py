@@ -271,7 +271,7 @@ class ClasificadorIntenciones:
         
         print(f"Modelo cargado desde: {ruta}/")
     
-    def predecir_intencion(self, texto, umbral_confianza=0.25):
+    def predecir_intencion(self, texto, umbral_confianza=0.10):
         """Predice la intención de un texto"""
         if self.modelo is None:
             raise ValueError("El modelo no está cargado. Entrena o carga un modelo primero.")
