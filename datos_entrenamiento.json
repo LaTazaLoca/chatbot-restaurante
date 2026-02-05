@@ -20,8 +20,8 @@
                 "buenas buenas"
             ],
             "respuestas": [
-                "¡Hola! 👋 Bienvenido a **La Taza Loca** ☕🌮 ¿Qué se te antoja hoy?",
-                "¡Qué onda! 😄 Soy el asistente de **La Taza Loca**. ¿Te paso el menú o te recomiendo algo?"
+                "¡Hola! 👋 Bienvenido a **FONDA DOÑA MAGUI** ☕🌮 ¿Qué se te antoja hoy?",
+                "¡Qué onda! 😄 Soy el asistente de **FONDA DOÑA MAGUI**. ¿Te paso el menú o te recomiendo algo?"
             ]
         },
         {
@@ -83,7 +83,7 @@
                 "que me puedes ofrecer"
             ],
             "respuestas": [
-                "Aquí va el **menú de La Taza Loca** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes/Rojos\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 WhatsApp: **664-563-16-75**"
+                "Aquí va el **menú de FONDA DOÑA MAGUI** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes/Rojos\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 WhatsApp: **664-563-16-75**"
             ]
         },
         {
@@ -294,7 +294,7 @@
         {
             "tag": "informacion_negocio",
             "patrones": [
-                "que es la taza loca",
+                "que es fonda doña magui",
                 "informacion del restaurante",
                 "sobre ustedes",
                 "que tipo de comida",
@@ -303,7 +303,7 @@
                 "que ofrecen"
             ],
             "respuestas": [
-                "☕🌮 **La Taza Loca** es un restaurante de comida mexicana en Tijuana.\n\n🕒 Horario: 9am - 4pm\n📲 WhatsApp: 664-563-16-75\n🚚 Entrega GRATIS en zonas cercanas\n\n¿Te paso el menú? 😄"
+                "☕🌮 **FONDA DOÑA MAGUI** es un restaurante de comida mexicana en Tijuana.\n\n🕒 Horario: 9am - 4pm\n📲 WhatsApp: 664-563-16-75\n🚚 Entrega GRATIS en zonas cercanas\n\n¿Te paso el menú? 😄"
             ]
         }
     ]
