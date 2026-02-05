@@ -13,6 +13,8 @@ from difflib import SequenceMatcher
 
 # Importar el clasificador de intenciones
 from modelo_intenciones import ClasificadorIntenciones
+# Importar el sistema de pedidos
+from sistema_pedidos import gestor_pedidos
 
 app = Flask(__name__)
 CORS(app)
@@ -294,6 +296,280 @@ def reentrenar():
             "mensaje": "Modelo reentrenado exitosamente",
             "status": "success"
         })
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+# ===== ENDPOINTS DE PEDIDOS =====
+
+@app.route('/pedido/crear', methods=['POST'])
+def crear_pedido():
+    """Crea un nuevo pedido para un usuario"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        
+        if not usuario_id:
+            usuario_id = gestor_pedidos.crear_pedido()
+        else:
+            if usuario_id not in gestor_pedidos.pedidos:
+                gestor_pedidos.crear_pedido(usuario_id)
+        
+        return jsonify({
+            "usuario_id": usuario_id,
+            "pedido": gestor_pedidos.obtener_pedido(usuario_id),
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/agregar', methods=['POST'])
+def agregar_item_pedido():
+    """Agrega un platillo al pedido"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        platillo_id = data.get('platillo_id')
+        cantidad = data.get('cantidad', 1)
+        
+        if not usuario_id or not platillo_id:
+            return jsonify({
+                "error": "usuario_id y platillo_id son requeridos",
+                "status": "error"
+            }), 400
+        
+        # Buscar el platillo en el menú
+        platillo = next((p for p in bot.menu if p['id'] == platillo_id), None)
+        
+        if not platillo:
+            return jsonify({
+                "error": "Platillo no encontrado",
+                "status": "error"
+            }), 404
+        
+        if not platillo['disponible']:
+            return jsonify({
+                "error": f"{platillo['nombre']} no está disponible en este momento",
+                "status": "error"
+            }), 400
+        
+        # Agregar al pedido
+        pedido = gestor_pedidos.agregar_item(usuario_id, platillo, cantidad)
+        
+        return jsonify({
+            "mensaje": f"{cantidad}x {platillo['nombre']} agregado al pedido",
+            "pedido": pedido,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/quitar', methods=['POST'])
+def quitar_item_pedido():
+    """Quita un platillo del pedido"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        platillo_id = data.get('platillo_id')
+        
+        if not usuario_id or not platillo_id:
+            return jsonify({
+                "error": "usuario_id y platillo_id son requeridos",
+                "status": "error"
+            }), 400
+        
+        pedido = gestor_pedidos.quitar_item(usuario_id, platillo_id)
+        
+        return jsonify({
+            "mensaje": "Platillo quitado del pedido",
+            "pedido": pedido,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/actualizar-cantidad', methods=['POST'])
+def actualizar_cantidad_pedido():
+    """Actualiza la cantidad de un platillo en el pedido"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        platillo_id = data.get('platillo_id')
+        cantidad = data.get('cantidad')
+        
+        if not usuario_id or not platillo_id or cantidad is None:
+            return jsonify({
+                "error": "usuario_id, platillo_id y cantidad son requeridos",
+                "status": "error"
+            }), 400
+        
+        pedido = gestor_pedidos.actualizar_cantidad(usuario_id, platillo_id, cantidad)
+        
+        return jsonify({
+            "mensaje": "Cantidad actualizada",
+            "pedido": pedido,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/vaciar', methods=['POST'])
+def vaciar_pedido():
+    """Vacía todo el carrito del pedido"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        
+        if not usuario_id:
+            return jsonify({
+                "error": "usuario_id es requerido",
+                "status": "error"
+            }), 400
+        
+        pedido = gestor_pedidos.vaciar_pedido(usuario_id)
+        
+        return jsonify({
+            "mensaje": "Carrito vaciado",
+            "pedido": pedido,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/obtener', methods=['POST'])
+def obtener_pedido_actual():
+    """Obtiene el pedido actual del usuario"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        
+        if not usuario_id:
+            return jsonify({
+                "error": "usuario_id es requerido",
+                "status": "error"
+            }), 400
+        
+        pedido = gestor_pedidos.obtener_pedido(usuario_id)
+        
+        if not pedido:
+            return jsonify({
+                "mensaje": "No hay pedido activo",
+                "pedido": None,
+                "status": "success"
+            })
+        
+        return jsonify({
+            "pedido": pedido,
+            "resumen": gestor_pedidos.resumen_pedido(usuario_id),
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/datos-cliente', methods=['POST'])
+def agregar_datos_cliente():
+    """Agrega los datos del cliente al pedido"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        nombre = data.get('nombre')
+        telefono = data.get('telefono')
+        direccion = data.get('direccion', '')
+        tipo_entrega = data.get('tipo_entrega', 'domicilio')
+        notas = data.get('notas', '')
+        
+        if not usuario_id or not nombre or not telefono:
+            return jsonify({
+                "error": "usuario_id, nombre y telefono son requeridos",
+                "status": "error"
+            }), 400
+        
+        if tipo_entrega == 'domicilio' and not direccion:
+            return jsonify({
+                "error": "La dirección es requerida para entregas a domicilio",
+                "status": "error"
+            }), 400
+        
+        pedido = gestor_pedidos.agregar_datos_cliente(
+            usuario_id, nombre, telefono, direccion, tipo_entrega, notas
+        )
+        
+        return jsonify({
+            "mensaje": "Datos del cliente agregados",
+            "pedido": pedido,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+
+@app.route('/pedido/finalizar', methods=['POST'])
+def finalizar_pedido_endpoint():
+    """Finaliza el pedido y genera el link de WhatsApp"""
+    try:
+        data = request.get_json()
+        usuario_id = data.get('usuario_id')
+        
+        if not usuario_id:
+            return jsonify({
+                "error": "usuario_id es requerido",
+                "status": "error"
+            }), 400
+        
+        resultado = gestor_pedidos.finalizar_pedido(usuario_id)
+        
+        if resultado.get('codigo') != 'SUCCESS':
+            return jsonify({
+                "error": resultado.get('error'),
+                "codigo": resultado.get('codigo'),
+                "status": "error"
+            }), 400
+        
+        return jsonify({
+            "mensaje": "Pedido finalizado correctamente",
+            "link_whatsapp": resultado['link_whatsapp'],
+            "pedido": resultado['pedido'],
+            "mensaje_whatsapp": resultado['mensaje'],
+            "status": "success"
+        })
+    
     except Exception as e:
         return jsonify({
             "error": str(e),
