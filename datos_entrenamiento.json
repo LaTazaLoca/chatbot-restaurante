@@ -20,8 +20,8 @@
                 "buenas buenas"
             ],
             "respuestas": [
-                "¡Hola! 👋 Bienvenido a **FONDA DOÑA MAGUI** ☕🌮 ¿Qué se te antoja hoy?",
-                "¡Qué onda! 😄 Soy el asistente de **FONDA DOÑA MAGUI**. ¿Te paso el menú o te recomiendo algo?"
+                "¡Hola! 👋 Bienvenido a **FONDA DOÑA MAGUI** ☕🌮\n\n¿Qué se te antoja hoy?\n\n📋 Escribe **'menú'** para ver platillos\n🛒 Escribe **'pedir'** para ordenar\n📱 WhatsApp: 664-563-16-75",
+                "¡Qué onda! 😄 Soy el asistente de **FONDA DOÑA MAGUI**\n\n¿Te ayudo con algo?\n• Ver el **menú** 📋\n• Hacer un **pedido** 🛒\n• Ver **precios** 💰\n• **Horarios** ⏰"
             ]
         },
         {
@@ -247,11 +247,51 @@
                 "dame unos",
                 "ponme",
                 "anotame",
-                "quiero comprar"
+                "quiero comprar",
+                "quiero hacer un pedido",
+                "hacer un pedido",
+                "ordenar comida",
+                "pedir comida",
+                "encargar comida",
+                "quiero encargar",
+                "me gustaria pedir",
+                "quisiera ordenar",
+                "puedo hacer un pedido",
+                "como hago un pedido",
+                "como pido",
+                "donde pido",
+                "pedir en linea",
+                "ordenar en linea",
+                "pedido en linea",
+                "quiero mi pedido",
+                "hacer mi pedido"
             ],
             "respuestas": [
-                "¡Va! 😄 Dime:\n1) ¿Qué platillo(s)?\n2) ¿Entrega o recoges?\n3) Tu colonia (si es entrega)\n\n📲 O pide directo: **664-563-16-75**",
-                "Perfecto 🔥 ¿Qué vas a pedir? (Ej: *2 chilaquiles rojos*)"
+                "¡Perfecto! 😄 Tienes **2 opciones** para ordenar:\n\n🌐 **OPCIÓN 1: PEDIDO EN LÍNEA**\nHaz tu pedido aquí → https://TU-URL-AQUI.com\n(Agrega platillos al carrito y envía por WhatsApp)\n\n📱 **OPCIÓN 2: LLÁMANOS/ESCRÍBENOS**\nWhatsApp: **664-563-16-75**\n\n¿Cuál prefieres? 🤗",
+                "¡Órale! 😋 Para ordenar:\n\n👉 **WEB**: https://TU-URL-AQUI.com\n(Rápido, fácil y envías directo por WhatsApp)\n\n📲 **DIRECTO**: 664-563-16-75\n\n¡Tú eliges! 🌮☕"
+            ]
+        },
+        {
+            "tag": "ordenar_especifico",
+            "patrones": [
+                "quiero 2 huevos",
+                "dame 3 chilaquiles",
+                "ponme 1 enmolada",
+                "2 huevos rancheros",
+                "un chilaquiles rojos",
+                "dos flautas",
+                "tres enchiladas",
+                "1 mole",
+                "quiero huevos rancheros",
+                "dame chilaquiles",
+                "2 de huevos",
+                "3 ordenes de",
+                "una orden de",
+                "dos ordenes de"
+            ],
+            "respuestas": [
+                "¡Excelente elección! 😋\n\nPara procesar tu pedido, usa nuestra página:\n👉 https://TU-URL-AQUI.com\n\nO mándanos tu orden completa:\n📱 WhatsApp: **664-563-16-75**\n\n¿Te ayudo con algo más del menú? 🌮",
+                "¡Se ve delicioso! 🤤\n\n📝 Para ordenar:\n\n🌐 **En línea**: https://TU-URL-AQUI.com\n(Fácil y rápido)\n\n📲 **WhatsApp**: 664-563-16-75\n\n¿Algo más que se te antoje? 😊"
             ]
         },
         {
