@@ -20,8 +20,7 @@
                 "buenas buenas"
             ],
             "respuestas": [
-                "¡Hola! 👋 Bienvenido a **FONDA DOÑA MAGUI** ☕🌮\n\n¿Qué se te antoja hoy?\n\n📋 Escribe **'menú'** para ver platillos\n🛒 Escribe **'pedir'** para ordenar\n📱 WhatsApp: 664-563-16-75",
-                "¡Qué onda! 😄 Soy el asistente de **FONDA DOÑA MAGUI**\n\n¿Te ayudo con algo?\n• Ver el **menú** 📋\n• Hacer un **pedido** 🛒\n• Ver **precios** 💰\n• **Horarios** ⏰"
+                "¡Hola! 👋 Bienvenido a **FONDA DOÑA MAGUI** ☕🌮\n\n**¿Qué deseas hacer?**\n\n📋 Ver **MENÚ** completo\n🛒 **HACER PEDIDO** (escribe: pedir)\n💰 Ver **PRECIOS**\n⏰ Ver **HORARIOS**\n📱 Contacto: **664-563-16-75**"
             ]
         },
         {
@@ -80,10 +79,11 @@
                 "quiero ver el menu",
                 "muestrame el menu",
                 "tienen menu",
-                "que me puedes ofrecer"
+                "que me puedes ofrecer",
+                "ver menu"
             ],
             "respuestas": [
-                "Aquí va el **menú de FONDA DOÑA MAGUI** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros\n• Huevos a la Mexicana\n• Huevos con Jamón\n• Huevos Divorciados\n• Omelette de Queso\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo\n• Chilaquiles Verdes/Rojos\n• Enmoladas de Pollo\n• Enchiladas de Pollo\n• Chiles Rellenos\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle\n• Mole de Pollo\n• Puerco en Salsa Verde\n\n📲 WhatsApp: **664-563-16-75**"
+                "Aquí va el **menú de FONDA DOÑA MAGUI** 🌮🔥\n\n**DESAYUNOS** 🍳\n• Huevos Rancheros - $150\n• Huevos a la Mexicana - $150\n• Huevos con Jamón - $150\n• Huevos Divorciados - $150\n• Omelette de Queso - $150\n\n**ANTOJITOS** 🌮\n• Flautas de Pollo - $150\n• Chilaquiles Verdes/Rojos - $150\n• Enmoladas de Pollo - $150\n• Enchiladas de Pollo - $150\n• Chiles Rellenos - $150\n\n**COMIDAS** 🍛\n• Pechuga en Chipotle - $150\n• Mole de Pollo - $150\n• Puerco en Salsa Verde - $150\n\n💡 **Para PEDIR escribe:** \"quiero pedir\"\n📱 **WhatsApp:** 664-563-16-75"
             ]
         },
         {
@@ -91,7 +91,6 @@
             "patrones": [
                 "desayunos",
                 "para desayunar",
-                "huevos",
                 "omelette",
                 "que hay de desayuno",
                 "menu de desayuno",
@@ -100,25 +99,18 @@
                 "opciones de desayuno"
             ],
             "respuestas": [
-                "**DESAYUNOS 🍳**\n• Huevos Rancheros - $120\n• Huevos a la Mexicana - $120\n• Huevos con Jamón - $120\n• Huevos Divorciados - $120\n• Omelette de Queso - $120\n\n¿Cuál se te antoja? 😋"
+                "**DESAYUNOS 🍳**\n• Huevos Rancheros - $150\n• Huevos a la Mexicana - $150\n• Huevos con Jamón - $150\n• Huevos Divorciados - $150\n• Omelette de Queso - $150\n\n💡 **Para PEDIR:** Escribe \"quiero pedir [platillo]\"\n📱 O llama: **664-563-16-75**"
             ]
         },
         {
             "tag": "menu_antojitos",
             "patrones": [
                 "antojitos",
-                "chilaquiles",
-                "enmoladas",
-                "enchiladas",
-                "flautas",
-                "chiles rellenos",
                 "algo mexicano",
-                "antojitos mexicanos",
-                "tienen chilaquiles",
-                "hay enmoladas"
+                "antojitos mexicanos"
             ],
             "respuestas": [
-                "**ANTOJITOS 🌮🔥**\n• Flautas de Pollo - $120\n• Chilaquiles Verdes con Huevo - $120\n• Chilaquiles Rojos con Huevo - $120\n• Enmoladas de Pollo - $120\n• Enchiladas de Pollo - $120\n• Chiles Rellenos de Queso - $120\n\n¿Rojos o verdes? 😄"
+                "**ANTOJITOS 🌮🔥**\n• Flautas de Pollo - $150\n• Chilaquiles Verdes con Huevo - $150\n• Chilaquiles Rojos con Huevo - $150 ⭐\n• Enmoladas de Pollo - $150 🔥\n• Enchiladas de Pollo - $150\n• Chiles Rellenos de Queso - $150\n\n💡 **Para PEDIR:** Escribe \"quiero pedir\"\n📱 **WhatsApp:** 664-563-16-75"
             ]
         },
         {
@@ -127,15 +119,12 @@
                 "comidas",
                 "platillos fuertes",
                 "comida corrida",
-                "mole",
-                "pechuga",
-                "puerco",
                 "algo fuerte",
                 "plato fuerte",
                 "para comer"
             ],
             "respuestas": [
-                "**COMIDAS 🍛**\n• Pechuga en Chipotle - $120\n• Mole de Pollo - $120\n• Puerco en Salsa Verde - $120\n\n¿Te late el mole o prefieres algo con cremita? 🔥"
+                "**COMIDAS 🍛**\n• Pechuga en Chipotle - $150\n• Mole de Pollo - $150\n• Puerco en Salsa Verde - $150\n\n💡 **Para PEDIR:** Escribe \"quiero pedir\"\n📱 **WhatsApp:** 664-563-16-75"
             ]
         },
         {
@@ -154,8 +143,7 @@
                 "en cuanto sale"
             ],
             "respuestas": [
-                "La mayoría de platillos están en **$120 pesos** 😄🌮 ¿Cuál te interesa?",
-                "Nuestros platillos andan en **$120** 💛 ¿Quieres ver el menú completo?"
+                "Nuestros platillos están en **$150 pesos** 💛\n\n¿Cuál te interesa?\n\n📋 Escribe **'menú'** para ver todos\n🛒 Escribe **'pedir'** para ordenar"
             ]
         },
         {
@@ -173,8 +161,7 @@
                 "horarios de atencion"
             ],
             "respuestas": [
-                "🕒 Nuestro horario es **de 9:00 am a 4:00 pm** todos los días 😄",
-                "Atendemos **de 9:00 am a 4:00 pm** ⏰ ¿Quieres hacer un pedido?"
+                "🕐 Nuestro horario es **de 9:00 am a 4:00 pm** todos los días 😄\n\n¿Quieres hacer un pedido?"
             ]
         },
         {
@@ -192,8 +179,7 @@
                 "mandame ubicacion"
             ],
             "respuestas": [
-                "📍 Estamos en **Tijuana, Baja California**\nDime tu colonia y te confirmo si hacemos entrega 😄",
-                "Estamos en **Tijuana** 📍 ¿Quieres que te confirmemos cobertura de entrega?"
+                "📍 Estamos en **Tijuana, Baja California**\n\nDime tu colonia y te confirmo si hacemos entrega 😄\n\n📱 WhatsApp: **664-563-16-75**"
             ]
         },
         {
@@ -211,8 +197,7 @@
                 "entregan en mi zona"
             ],
             "respuestas": [
-                "🚚 Sí hacemos entrega a domicilio **GRATIS** en zonas cercanas 😄\n¿En qué colonia estás?",
-                "¡Claro! 📦 Entrega **GRATIS** en lugares cercanos. Dime tu **colonia** para confirmar."
+                "🚚 Sí hacemos entrega a domicilio **GRATIS** en zonas cercanas 😄\n\n¿En qué colonia estás?\n\n📱 WhatsApp: **664-563-16-75**"
             ]
         },
         {
@@ -230,8 +215,7 @@
                 "pasame el numero"
             ],
             "respuestas": [
-                "📲 WhatsApp: **664-563-16-75**\n¿Quieres hacer un pedido? 😄",
-                "Escríbenos al **664-563-16-75** 📲✨ ¡Con gusto te atendemos!"
+                "📲 WhatsApp: **664-563-16-75**\n\n¿Quieres hacer un pedido? 😄"
             ]
         },
         {
@@ -264,34 +248,39 @@
                 "ordenar en linea",
                 "pedido en linea",
                 "quiero mi pedido",
-                "hacer mi pedido"
+                "hacer mi pedido",
+                "pedir",
+                "ordenar"
             ],
             "respuestas": [
-                "¡Perfecto! 😄 Tienes **2 opciones** para ordenar:\n\n🌐 **OPCIÓN 1: PEDIDO EN LÍNEA**\nHaz tu pedido aquí → https://TU-URL-AQUI.com\n(Agrega platillos al carrito y envía por WhatsApp)\n\n📱 **OPCIÓN 2: LLÁMANOS/ESCRÍBENOS**\nWhatsApp: **664-563-16-75**\n\n¿Cuál prefieres? 🤗",
-                "¡Órale! 😋 Para ordenar:\n\n👉 **WEB**: https://TU-URL-AQUI.com\n(Rápido, fácil y envías directo por WhatsApp)\n\n📲 **DIRECTO**: 664-563-16-75\n\n¡Tú eliges! 🌮☕"
+                "¡Perfecto! 😄 Para hacer tu pedido:\n\n📱 **Llámanos/Escríbenos:**\nWhatsApp: **664-563-16-75**\n\nDinos:\n1️⃣ Qué platillo(s) quieres\n2️⃣ Cantidad\n3️⃣ Tu nombre y dirección\n\n¿Qué se te antoja del menú? 🌮☕"
             ]
         },
         {
-            "tag": "ordenar_especifico",
+            "tag": "consulta_platillo",
             "patrones": [
-                "quiero 2 huevos",
-                "dame 3 chilaquiles",
-                "ponme 1 enmolada",
-                "2 huevos rancheros",
-                "un chilaquiles rojos",
-                "dos flautas",
-                "tres enchiladas",
-                "1 mole",
-                "quiero huevos rancheros",
-                "dame chilaquiles",
-                "2 de huevos",
-                "3 ordenes de",
-                "una orden de",
-                "dos ordenes de"
+                "chilaquiles",
+                "enmoladas",
+                "enchiladas",
+                "flautas",
+                "chiles rellenos",
+                "huevos",
+                "mole",
+                "pechuga",
+                "puerco",
+                "tienen chilaquiles",
+                "hay enmoladas",
+                "chilaquiles rojos",
+                "chilaquiles verdes",
+                "rojos",
+                "verdes",
+                "huevos rancheros",
+                "huevos mexicana",
+                "huevos jamon",
+                "huevos divorciados"
             ],
             "respuestas": [
-                "¡Excelente elección! 😋\n\nPara procesar tu pedido, usa nuestra página:\n👉 https://TU-URL-AQUI.com\n\nO mándanos tu orden completa:\n📱 WhatsApp: **664-563-16-75**\n\n¿Te ayudo con algo más del menú? 🌮",
-                "¡Se ve delicioso! 🤤\n\n📝 Para ordenar:\n\n🌐 **En línea**: https://latazaloca.com/interfaz_pedidos.html\n(Fácil y rápido)\n\n📲 **WhatsApp**: 664-563-16-75\n\n¿Algo más que se te antoje? 😊"
+                "¡Tenemos los mejores antojitos! 😋🔥\n\n**Chilaquiles** (rojos o verdes) - $150 ⭐\n**Enmoladas de Pollo** - $150 🔥\n**Enchiladas de Pollo** - $150\n**Flautas de Pollo** - $150\n**Chiles Rellenos** - $150\n\n💡 **Para PEDIR:**\n📱 WhatsApp: **664-563-16-75**\n\nDinos cuál quieres y tu dirección 😊"
             ]
         },
         {
@@ -309,8 +298,7 @@
                 "no se que pedir"
             ],
             "respuestas": [
-                "🔥 Te recomiendo los **Chilaquiles rojos con huevo** o las **Enmoladas de Pollo** ¡Son los favoritos!",
-                "Los más pedidos: **Huevos Rancheros** y **Chilaquiles** 😋 ¿Te animas?"
+                "🔥 Te recomiendo:\n\n⭐ **Chilaquiles Rojos con Huevo** - $150\n(Nuestro más vendido!)\n\n🔥 **Enmoladas de Pollo** - $150\n(Súper populares!)\n\n💡 **Para PEDIR:**\n📱 WhatsApp: **664-563-16-75**"
             ]
         },
         {
@@ -327,8 +315,7 @@
                 "aceptan efectivo"
             ],
             "respuestas": [
-                "Aceptamos **efectivo, transferencia y tarjeta** 💳✨",
-                "Puedes pagar con **efectivo**, **transferencia** o **tarjeta** 😄"
+                "Aceptamos:\n💵 **Efectivo**\n💳 **Tarjeta**\n📱 **Transferencia**\n\n¿Quieres hacer tu pedido?\n📲 WhatsApp: **664-563-16-75**"
             ]
         },
         {
@@ -340,10 +327,11 @@
                 "que tipo de comida",
                 "a que se dedican",
                 "cuentenme de ustedes",
-                "que ofrecen"
+                "que ofrecen",
+                "informacion"
             ],
             "respuestas": [
-                "☕🌮 **FONDA DOÑA MAGUI** es un restaurante de comida mexicana en Tijuana.\n\n🕒 Horario: 9am - 4pm\n📲 WhatsApp: 664-563-16-75\n🚚 Entrega GRATIS en zonas cercanas\n\n¿Te paso el menú? 😄"
+                "☕🌮 **FONDA DOÑA MAGUI**\nComida mexicana casera en Tijuana\n\n🕐 Horario: 9am - 4pm\n📲 WhatsApp: 664-563-16-75\n🚚 Entrega GRATIS en zonas cercanas\n💰 Platillos desde $150\n\n¿Te paso el menú? 😄"
             ]
         }
     ]
